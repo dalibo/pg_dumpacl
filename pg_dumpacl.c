@@ -45,11 +45,12 @@ pg_malloc(size_t size)
 	if (size == 0)
 		size = 1;
 	ptr = malloc(size);
-	if (!ptr)
+	if (ptr == NULL)
 	{
 		fprintf(stderr, "out of memory\n");
 		exit(1);
 	}
+	MemSet(ptr, 0, size);
 	return ptr;
 }
 
