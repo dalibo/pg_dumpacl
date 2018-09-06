@@ -1,4 +1,4 @@
-%global version 0.3
+%global version 0.4
 %{!?pgversion: %global pgversion 10}
 %{!?pginstdir: %global pginstdir /usr/pgsql-10}
 
@@ -48,6 +48,7 @@ fi
 
 %changelog
 
+* Thu Sep 06 2018 tilkow - 0.4-1
 * Wed Aug 22 2018 Étienne BERSAC <etienne.bersac@dalibo.com> - 0.3-1
 
 - Fix options parsing.
