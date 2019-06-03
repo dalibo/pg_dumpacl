@@ -2,6 +2,14 @@
 
 A tool to dump ACL per database, based on `pg_dump`
 
+> This tool is useful only for PostgreSQL 10 and earlier versions.
+> Since PostgreSQL 11, the `--create` option of [pg_dump] will
+> export the ACL privileges for the database. Thus making this 
+> tool obsolete.
+
+[pg_dump]: https://www.postgresql.org/docs/current/app-pgdump.html
+
+
 ``` console
 $ ./pg_dumpacl -d db0
 --
