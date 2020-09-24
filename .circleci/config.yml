@@ -13,6 +13,8 @@ jobs:
     docker:
     - image: dalibo/postgres-sdk@sha256:b4b6b953235442cf6214ea6970934a572bb61f5b5525e9d28c651d54062b90cf
     - image: postgres:10-alpine
+      environment:
+        POSTGRES_HOST_AUTH_METHOD: trust
     steps:
     - checkout
     - run:
