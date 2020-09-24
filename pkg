@@ -12,19 +12,14 @@ teardown() {
 
 trap teardown EXIT INT TERM
 
-cd $(readlink -m $0/..)
-if ! yum repolist |& grep -q pgdg ; then
-	sudo yum install -y \
-		 ${PGDG_RPM-https://download.postgresql.org/pub/repos/yum/10/redhat/rhel-7-x86_64/pgdg-centos10-10-2.noarch.rpm}
-fi
-
 : ${PGVERSION=10}
 defines=(
 	"--define=pgversion ${PGVERSION/./}"
 	"--define=pginstdir /usr/pgsql-${PGVERSION}"
 )
 
-
+cd /srv
+sudo yum install -y gcc
 sudo yum install -y $(rpmspec -q --buildrequires "${defines[@]}" pg_dumpacl.spec)
 rpmbuild \
     --define "_sourcedir ${PWD}" \
