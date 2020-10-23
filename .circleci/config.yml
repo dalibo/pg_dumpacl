@@ -38,7 +38,7 @@ jobs:
   0-rpm-centos7:
     working_directory: /tmp/cci
     docker:
-    - image: rpmbuild/centos7@sha256:10a62db594c19a0fc6026cab1492d48ba611a52f5b68c07e33a0da9c6c54e039
+    - image: dalibo/labs-sdk:centos7
     steps:
     - checkout
     - run: ./pkg
