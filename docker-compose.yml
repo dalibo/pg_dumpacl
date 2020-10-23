@@ -5,6 +5,8 @@ services:
     image: postgres:10-alpine
     volumes:
     - ./fixture.sh:/docker-entrypoint-initdb.d/fixture.sh
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: trust
     labels:
       com.dnsdock.alias: postgres.pgdumpacl.docker
 
