@@ -1,4 +1,4 @@
-version: "2"
+version: "3"
 
 services:
   postgres:
@@ -22,10 +22,10 @@ services:
     command: "tail -f /dev/null"
 
   rpm:
-    image: rpmbuild/centos7
+    image: dalibo/labs-sdk:${DIST-centos7}
     environment:
     - HISTFILE=/srv/.docker-rpm-bash-history
-    - PGDG_RPM
     - PGVERSION
     volumes:
     - .:/srv
+    command: [/srv/pkg]

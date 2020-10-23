@@ -16,6 +16,13 @@ GRANT CONNECT,TEMPORARY ON DATABASE "db0" TO PUBLIC;
 GRANT CONNECT ON DATABASE "db0" TO "dba";
 ```
 
+## Packaging
+
+Use `make rpms` to build RPM packages for PostgreSQL version that require it.
+As of 2020Q4, supported versions that require pg_dumpacl are 9.5, 9.6 and 10.
+
+Define `DIST` to `centos7` or `centos8`, to build RPM packages for CentOS/RHEL
+7 or 8, 7 being the default.
 
 ## Installation
 

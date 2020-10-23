@@ -27,21 +27,15 @@ uninstall:
 clean distclean maintainer-clean:
 	rm -f pg_dumpacl pg_dumpacl.o
 
-PGDG=https://download.postgresql.org/pub/repos/yum
 .PHONY: rpms
 rpms:
-	PGDG_RPM=$(PGDG)/10/redhat/rhel-7-x86_64/pgdg-centos10-10-2.noarch.rpm PGVERSION=10 \
-		docker-compose run --rm rpm
-	PGDG_RPM=$(PGDG)/9.6/redhat/rhel-7-x86_64/pgdg-centos96-9.6-3.noarch.rpm PGVERSION=9.6 \
-		docker-compose run --rm rpm
-	PGDG_RPM=$(PGDG)/9.5/redhat/rhel-7-x86_64/pgdg-centos95-9.5-3.noarch.rpm PGVERSION=9.5 \
-		docker-compose run --rm rpm
-	PGDG_RPM=$(PGDG)/9.4/redhat/rhel-7-x86_64/pgdg-centos94-9.4-3.noarch.rpm PGVERSION=9.4 \
-		docker-compose run --rm rpm
-	PGDG_RPM=$(PGDG)/9.3/redhat/rhel-7-x86_64/pgdg-centos93-9.3-3.noarch.rpm PGVERSION=9.3 \
-		docker-compose run --rm rpm
+	PGVERSION=10 docker-compose run --rm rpm
+	PGVERSION=9.6 docker-compose run --rm rpm
+	PGVERSION=9.5 docker-compose run --rm rpm
 
 YUMLABS?=../yum-labs
 publish:
-	find rpm -name "*.rpm" | xargs -tI % mv -vf % $(YUMLABS)/rpms/CentOS7-x86_64/
+	mkdir -p $(YUMLABS)/rpms/CentOS7-x86_64/ $(YUMLABS)/rpms/CentOS8-x86_64/
+	find rpms -name "*.el7.x86_64.rpm" | xargs -tI % cp -vf % $(YUMLABS)/rpms/CentOS7-x86_64/
+	find rpms -name "*.el8.x86_64.rpm" | xargs -tI % cp -vf % $(YUMLABS)/rpms/CentOS8-x86_64/
 	$(MAKE) -C $(YUMLABS) push createrepos
